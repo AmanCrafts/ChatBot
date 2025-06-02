@@ -5,11 +5,12 @@ import LaunchButton from "./components/LaunchButton/LaunchButton";
 import ModalWindow from "./components/ModalWindow/ModalWindow";
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState("home");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // State management for the main application
+  const [isOpen, setIsOpen] = useState(false);  // Controls modal visibility
+  const [activeTab, setActiveTab] = useState("home");  // Tracks active tab in the modal
+  const [isLoggedIn, setIsLoggedIn] = useState(false);  // Authentication state
 
-  // Sample data
+  // Sample data for demonstration - Replace with API calls in production
   const faqData = [
     {
       question: "How do I reset my password?",
@@ -76,6 +77,7 @@ function App() {
     },
   ];
 
+  // Toggle modal window visibility - Called when chat button is clicked
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };

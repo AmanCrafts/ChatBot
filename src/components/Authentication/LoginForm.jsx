@@ -1,11 +1,13 @@
 import { useState } from "react";
 
 const LoginForm = ({ onLogin, toggleForm }) => {
+    // Login form data state
     const [formData, setFormData] = useState({
         email: "",
         password: "",
     });
 
+    // Handle form input changes
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({
@@ -14,9 +16,10 @@ const LoginForm = ({ onLogin, toggleForm }) => {
         }));
     };
 
+    // Handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
-        // In a real app, this would send data to your backend
+        // In production, this would connect to a backend authentication service
         console.log("Login attempt with:", formData);
         onLogin(formData);
     };
@@ -27,6 +30,7 @@ const LoginForm = ({ onLogin, toggleForm }) => {
             <p className="auth-subtitle">Sign in to continue</p>
 
             <form onSubmit={handleSubmit}>
+                {/* Email field */}
                 <div className="form-group">
                     <label htmlFor="email">Email</label>
                     <input
@@ -40,6 +44,7 @@ const LoginForm = ({ onLogin, toggleForm }) => {
                     />
                 </div>
 
+                {/* Password field */}
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
                     <input
@@ -58,6 +63,7 @@ const LoginForm = ({ onLogin, toggleForm }) => {
                 </button>
             </form>
 
+            {/* Toggle to signup form */}
             <p className="auth-toggle">
                 Don't have an account?
                 <button className="toggle-button" onClick={toggleForm}>

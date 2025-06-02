@@ -1,3 +1,7 @@
+// SVG icons library for the application
+// Using inline SVGs for better customization and performance
+
+// Chatbot icon - Used for the launch button
 export const ChatbotIcon = () => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -18,6 +22,7 @@ export const ChatbotIcon = () => (
     </svg>
 );
 
+// Close icon - Used for closing the modal
 export const CloseIcon = () => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -35,6 +40,7 @@ export const CloseIcon = () => (
     </svg>
 );
 
+// Home icon - Used in the bottom navigation
 export const HomeIcon = () => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -52,6 +58,7 @@ export const HomeIcon = () => (
     </svg>
 );
 
+// Messages icon - Used in the bottom navigation
 export const MessagesIcon = () => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -68,6 +75,7 @@ export const MessagesIcon = () => (
     </svg>
 );
 
+// Help icon - Used in the bottom navigation
 export const HelpIcon = () => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -86,6 +94,7 @@ export const HelpIcon = () => (
     </svg>
 );
 
+// Send icon - Used in the message input
 export const SendIcon = () => (
     <svg
         xmlns="http://www.w3.org/2000/svg"

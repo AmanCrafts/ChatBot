@@ -4,6 +4,7 @@ import "react-phone-input-2/lib/style.css";
 import { Country, State } from "country-state-city";
 
 const SignupForm = ({ onSignup, toggleForm }) => {
+    // Form data state with all required fields for registration
     const [formData, setFormData] = useState({
         username: "",
         email: "",
@@ -16,22 +17,24 @@ const SignupForm = ({ onSignup, toggleForm }) => {
         confirmPassword: "",
     });
 
+    // Track validation errors for form fields
     const [errors, setErrors] = useState({
         password: "",
         confirmPassword: "",
         email: "",
     });
 
+    // Store countries and states data from the library
     const [countries, setCountries] = useState([]);
     const [states, setStates] = useState([]);
 
-    // Fetch all countries on component mount
+    // Fetch all countries when component mounts - used for country dropdown
     useEffect(() => {
         const allCountries = Country.getAllCountries();
         setCountries(allCountries);
     }, []);
 
-    // Update states when country changes
+    // Update available states whenever selected country changes
     useEffect(() => {
         if (formData.countryCode) {
             const countryStates = State.getStatesOfCountry(formData.countryCode);
@@ -41,6 +44,7 @@ const SignupForm = ({ onSignup, toggleForm }) => {
         }
     }, [formData.countryCode]);
 
+    // Handle changes to form input fields
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({
@@ -48,7 +52,7 @@ const SignupForm = ({ onSignup, toggleForm }) => {
             [name]: value,
         }));
 
-        // If country changes, reset state
+        // Reset state selection when country changes
         if (name === "countryCode") {
             const selectedCountry = countries.find(
                 (country) => country.isoCode === value
@@ -62,7 +66,7 @@ const SignupForm = ({ onSignup, toggleForm }) => {
             }));
         }
 
-        // If state changes
+        // Update state name when state code changes
         if (name === "stateCode") {
             const selectedState = states.find((state) => state.isoCode === value);
             setFormData((prev) => ({
@@ -72,7 +76,7 @@ const SignupForm = ({ onSignup, toggleForm }) => {
             }));
         }
 
-        // Clear errors when user is typing
+        // Clear validation errors when user starts typing
         if (name === "password" || name === "confirmPassword" || name === "email") {
             setErrors((prev) => ({
                 ...prev,
@@ -81,23 +85,23 @@ const SignupForm = ({ onSignup, toggleForm }) => {
         }
     };
 
-    // Handle phone number change
+    // Handle phone input changes from the phone component
     const handlePhoneChange = (value, data) => {
         setFormData((prev) => ({
             ...prev,
             phoneNumber: value,
-            // You can also store country info from phone selection if needed
+            // To store country info, uncomment below:
             // dialCode: data.dialCode
         }));
     };
 
-    // Email validation regex
+    // Validate email format using regex
     const validateEmail = (email) => {
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         return emailRegex.test(email);
     };
 
-    // Password validation - check for all requirements
+    // Validate password meets security requirements
     const validatePassword = (password) => {
         const hasUpperCase = /[A-Z]/.test(password);
         const hasLowerCase = /[a-z]/.test(password);
@@ -119,24 +123,25 @@ const SignupForm = ({ onSignup, toggleForm }) => {
         };
     };
 
+    // Validate all form fields before submission
     const validateForm = () => {
         let isValid = true;
         const newErrors = { password: "", confirmPassword: "", email: "" };
 
-        // Email validation
+        // Check email validity
         if (!validateEmail(formData.email)) {
             newErrors.email = "Please enter a valid email address";
             isValid = false;
         }
 
-        // Password validation
+        // Check password requirements
         const passwordCheck = validatePassword(formData.password);
         if (!passwordCheck.isValid) {
             newErrors.password = passwordCheck.errorMessage;
             isValid = false;
         }
 
-        // Confirm password validation
+        // Check if passwords match
         if (formData.password !== formData.confirmPassword) {
             newErrors.confirmPassword = "Passwords do not match";
             isValid = false;
@@ -146,6 +151,7 @@ const SignupForm = ({ onSignup, toggleForm }) => {
         return isValid;
     };
 
+    // Handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -155,12 +161,14 @@ const SignupForm = ({ onSignup, toggleForm }) => {
         }
     };
 
+    // JSX for the signup form
     return (
         <div className="auth-form">
             <h2>Create Account</h2>
             <p className="auth-subtitle">Sign up to get started</p>
 
             <form onSubmit={handleSubmit}>
+                {/* Username field */}
                 <div className="form-group">
                     <label htmlFor="username">Username</label>
                     <input
@@ -174,6 +182,7 @@ const SignupForm = ({ onSignup, toggleForm }) => {
                     />
                 </div>
 
+                {/* Email field with validation */}
                 <div className="form-group">
                     <label htmlFor="email">Email</label>
                     <input
@@ -190,10 +199,11 @@ const SignupForm = ({ onSignup, toggleForm }) => {
                     )}
                 </div>
 
+                {/* Phone number with international format */}
                 <div className="form-group">
                     <label htmlFor="phoneNumber">Phone Number</label>
                     <PhoneInput
-                        country={"us"} // Default country
+                        country={"us"} // Default country code
                         value={formData.phoneNumber}
                         onChange={handlePhoneChange}
                         enableSearch={true}
@@ -204,17 +214,18 @@ const SignupForm = ({ onSignup, toggleForm }) => {
                             required: true,
                             className: "phone-input",
                         }}
-                        // Show both flag, country name and iso code in dropdown
+                        // Configure dropdown display options
                         disableCountryCode={false}
                         showCountryNameInList={true}
                         autoFormat={true}
                         preferredCountries={["us", "ca", "gb", "in"]}
-                        // Display format settings
+                        // Additional display settings
                         enableAreaCodes={false}
                         searchPlaceholder="Search countries..."
                     />
                 </div>
 
+                {/* Country and State fields */}
                 <div className="location-fields">
                     <div className="form-group">
                         <label htmlFor="countryCode">Country</label>
@@ -242,7 +253,7 @@ const SignupForm = ({ onSignup, toggleForm }) => {
                             value={formData.stateCode}
                             onChange={handleChange}
                             required
-                            disabled={!formData.countryCode}
+                            disabled={!formData.countryCode} // Disabled until country is selected
                         >
                             <option value="">Select State</option>
                             {states.map((state) => (
@@ -254,6 +265,7 @@ const SignupForm = ({ onSignup, toggleForm }) => {
                     </div>
                 </div>
 
+                {/* Password with requirements */}
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
                     <input
@@ -278,6 +290,7 @@ const SignupForm = ({ onSignup, toggleForm }) => {
                     )}
                 </div>
 
+                {/* Confirm password */}
                 <div className="form-group">
                     <label htmlFor="confirmPassword">Confirm Password</label>
                     <input
@@ -299,6 +312,7 @@ const SignupForm = ({ onSignup, toggleForm }) => {
                 </button>
             </form>
 
+            {/* Toggle to login form */}
             <p className="auth-toggle">
                 Already have an account?
                 <button className="toggle-button" onClick={toggleForm}>

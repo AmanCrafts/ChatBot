@@ -1,10 +1,12 @@
+/* Global variables for consistent theming */
 :root {
-  --primary-color: #007bff;
-  --light-gray: #e9ecef;
-  --border-radius: 8px;
-  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --primary-color: #007bff; /* Main brand color */
+  --light-gray: #e9ecef;   /* Border and background color */
+  --border-radius: 8px;    /* Standard corner radius */
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Standard shadow */
 }
 
+/* Base styling */
 * {
   box-sizing: border-box;
 }
@@ -21,7 +23,7 @@ body {
   min-height: 100vh;
 }
 
-/* Launch Button */
+/* Launch Button - Floating action button to open the chat */
 .launch-button {
   position: fixed;
   bottom: 20px;
@@ -44,7 +46,7 @@ body {
   background-color: #0069d9;
 }
 
-/* Modal */
+/* Modal styling - Main chat window container */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -69,6 +71,7 @@ body {
   overflow: hidden;
 }
 
+/* Modal header styling */
 .modal-header {
   display: flex;
   justify-content: space-between;
@@ -107,7 +110,7 @@ body {
   border-top: 1px solid var(--light-gray);
 }
 
-/* Bottom Navigation */
+/* Bottom Navigation - Tab bar at the bottom */
 .bottom-navigation {
   height: 60px;
   background-color: white;
@@ -133,6 +136,7 @@ body {
   color: var(--primary-color);
 }
 
+/* Tooltip that shows on hover over navigation icons */
 .nav-tooltip {
   position: absolute;
   bottom: 100%;
@@ -154,419 +158,33 @@ body {
   visibility: visible;
 }
 
-/* Home Section */
-.home-section h2 {
-  margin-top: 0;
-  color: #333;
-}
+/* Home Section styles */
+/* ...existing code... */
 
-.action-buttons {
-  display: flex;
-  gap: 10px;
-  margin: 20px 0;
-}
+/* FAQ Accordion styles */
+/* ...existing code... */
 
-.chatbot-button, .primary-button {
-  padding: 10px 20px;
-  border-radius: var(--border-radius);
-  border: none;
-  cursor: pointer;
-  font-weight: 500;
-}
+/* Messages Section styles */
+/* ...existing code... */
 
-.chatbot-button {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background-color: white;
-  border: 1px solid var(--primary-color);
-  color: var(--primary-color);
-}
+/* Help Section styles */
+/* ...existing code... */
 
-.primary-button {
-  background-color: var(--primary-color);
-  color: white;
-}
+/* Authentication Section styles */
+/* ...existing code... */
 
-.faq-section h3 {
-  margin-top: 30px;
-}
-
-/* FAQ Accordion */
-.faq-accordion {
-  margin-top: 15px;
-}
-
-.faq-item {
-  border: 1px solid var(--light-gray);
-  border-radius: var(--border-radius);
-  margin-bottom: 10px;
-  overflow: hidden;
-}
-
-.faq-question {
-  padding: 15px;
-  background-color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  font-weight: 500;
-}
-
-.faq-answer {
-  padding: 15px;
-  border-top: 1px solid var(--light-gray);
-  background-color: #f8f9fa;
-}
-
-/* Messages Section */
-.message-list {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.message {
-  padding: 12px;
-  border-radius: var(--border-radius);
-  max-width: 85%;
-}
-
-.user-message {
-  align-self: flex-end;
-  background-color: var(--primary-color);
-  color: white;
-}
-
-.system-message {
-  align-self: flex-start;
-  background-color: var(--light-gray);
-  color: #333;
-}
-
-.message-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 5px;
-  font-size: 0.8rem;
-}
-
-.message-content {
-  word-break: break-word;
-}
-
-.message-input-container {
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.message-input {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid var(--light-gray);
-  border-radius: var(--border-radius);
-}
-
-.send-button {
-  padding: 10px;
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  border-radius: var(--border-radius);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Help Section */
-.help-category {
-  margin-bottom: 15px;
-  border: 1px solid var(--light-gray);
-  border-radius: var(--border-radius);
-}
-
-.help-category-header {
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  background-color: white;
-}
-
-.help-category-header h3 {
-  margin: 0;
-}
-
-.help-articles {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  padding: 15px;
-  border-top: 1px solid var(--light-gray);
-}
-
-.help-article {
-  padding: 15px;
-  border-radius: var(--border-radius);
-  background-color: #f8f9fa;
-}
-
-.help-article h4 {
-  margin-top: 0;
-}
-
-.read-more {
-  color: var(--primary-color);
-  text-decoration: none;
-  font-weight: 500;
-}
-
-/* Authentication Section */
-.authentication-section {
-  max-width: 350px;
-  margin: 0 auto;
-  padding: 20px 0;
-}
-
-.auth-form h2 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  color: #333;
-  text-align: center;
-}
-
-.auth-subtitle {
-  color: #666;
-  text-align: center;
-  margin-bottom: 25px;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: 500;
-  color: #555;
-}
-
-.form-group input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid var(--light-gray);
-  border-radius: var(--border-radius);
-  font-size: 16px;
-}
-
-.form-group input:focus {
-  border-color: var(--primary-color);
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-}
+/* Form styles */
+/* ...existing code... */
 
 /* Error message styling */
-.error-message {
-  color: #dc3545;
-  font-size: 14px;
-  margin-top: 5px;
-  display: block;
-}
+/* ...existing code... */
 
-.password-requirements {
-  background-color: #fff8f8;
-  padding: 8px 12px;
-  border-left: 3px solid #dc3545;
-  margin-top: 8px;
-}
+/* Phone Input Custom Styling - Modified for better UX */
+/* ...existing code... */
 
-.password-requirements p {
-  font-weight: 500;
-  margin: 0 0 5px 0;
-}
-
-/* Form validation visual indicators */
-input:invalid:focus,
-select:invalid:focus {
-  border-color: #dc3545;
-  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.25);
-}
-
-.auth-button {
-  width: 100%;
-  padding: 12px;
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  border-radius: var(--border-radius);
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.auth-button:hover {
-  background-color: #0069d9;
-}
-
-.auth-toggle {
-  text-align: center;
-  margin-top: 20px;
-  color: #666;
-}
-
-.toggle-button {
-  background: none;
-  border: none;
-  color: var(--primary-color);
-  font-weight: 500;
-  cursor: pointer;
-  margin-left: 5px;
-}
-
-.toggle-button:hover {
-  text-decoration: underline;
-}
-
-.header-actions {
-  display: flex;
-  align-items: center;
-}
-
-.logout-button {
-  background: none;
-  border: none;
-  color: #666;
-  margin-right: 15px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.logout-button:hover {
-  color: #333;
-  text-decoration: underline;
-}
-
-/* Location fields layout */
-.location-fields {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-}
-
-.form-group select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid var(--light-gray);
-  border-radius: var(--border-radius);
-  font-size: 16px;
-  background-color: white;
-  cursor: pointer;
-}
-
-.form-group select:focus {
-  border-color: var(--primary-color);
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-}
-
-/* Enhanced Phone input field styling */
-.phone-input {
-  width: 100% !important;
-}
-
-/* Phone Input Custom Styling */
-.react-tel-input .form-control {
-  width: 100% !important;
-  height: 42px !important;
-  border-radius: var(--border-radius) !important;
-  border: 1px solid var(--light-gray) !important;
-  padding-left: 85px !important; /* Make room for flag + iso code */
-}
-
-/* Style the flag dropdown area */
-.react-tel-input .selected-flag {
-  background-color: #f9f9f9 !important;
-  border-right: 1px solid var(--light-gray) !important;
-  border-radius: var(--border-radius) 0 0 var(--border-radius) !important;
-  padding: 0 8px 0 12px !important;
-  width: 75px !important;
-  display: flex !important;
-  align-items: center !important;
-}
-
-/* This is critical - force ISO code to appear next to flag */
-.react-tel-input .selected-flag::after {
-  content: "+" attr(title);
-  display: inline-block;
-  margin-left: 8px;
-  font-size: 13px;
-  font-weight: 500;
-  color: #333;
-}
-
-/* Position the arrow correctly */
-.react-tel-input .selected-flag .arrow {
-  right: 4px !important;
-  left: auto !important;
-}
-
-/* Ensure flag has proper space */
-.react-tel-input .selected-flag .flag {
-  margin-right: 0 !important;
-}
-
-/* Ensure the dropdown shows all information properly */
-.react-tel-input .country-list {
-  width: 350px !important;
-  border-radius: var(--border-radius) !important;
-  box-shadow: var(--box-shadow) !important;
-}
-
-.react-tel-input .country-list .country {
-  display: flex !important;
-  align-items: center !important;
-  padding: 10px !important;
-}
-
-/* Ensure country name stays visible in dropdown but not in input */
-.react-tel-input .country-list .country-name {
-  flex: 1;
-  color: #333;
-}
-
-.react-tel-input .country-list .dial-code {
-  color: #666;
-  font-weight: 500;
-}
-
-/* Search box styling */
-.react-tel-input .search-box {
-  margin: 8px !important;
-  padding: 8px !important;
-  border-radius: calc(var(--border-radius) - 2px) !important;
-}
-
-/* State dropdown styling when disabled */
-select:disabled {
-  background-color: #f5f5f5;
-  cursor: not-allowed;
-}
-
-/* Mobile responsiveness for form */
-@media (max-width: 480px) {
-  .location-fields {
-    grid-template-columns: 1fr;
-  }
-}
-
+/* Responsive design for mobile devices */
 @media (max-width: 768px) {
+  /* Modal takes full screen on mobile */
   .modal-overlay {
     align-items: stretch;
     justify-content: stretch;
@@ -579,6 +197,7 @@ select:disabled {
     border-radius: 0;
   }
   
+  /* Single column layout on mobile for better readability */
   .help-articles {
     grid-template-columns: 1fr;
   }
