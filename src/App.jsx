@@ -7,6 +7,7 @@ import ModalWindow from "./components/ModalWindow/ModalWindow";
 function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("home");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // Sample data
   const faqData = [
@@ -89,6 +90,8 @@ function App() {
           faqData={faqData}
           messageData={messageData}
           helpData={helpData}
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
         />
       )}
 
