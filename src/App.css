@@ -158,7 +158,7 @@ body {
   visibility: visible;
 }
 
-//* Home Section */
+/* Home Section */
 .home-section h2 {
   margin-top: 0;
   color: #333;
@@ -524,7 +524,7 @@ select:invalid:focus {
 
 /* This is critical - force ISO code to appear next to flag */
 .react-tel-input .selected-flag::after {
-  content: "+" attr(title);
+  
   display: inline-block;
   margin-left: 8px;
   font-size: 13px;
@@ -534,7 +534,7 @@ select:invalid:focus {
 
 /* Position the arrow correctly */
 .react-tel-input .selected-flag .arrow {
-  right: 4px !important;
+  right: -40px !important;
   left: auto !important;
 }
 
@@ -585,6 +585,132 @@ select:disabled {
   .location-fields {
     grid-template-columns: 1fr;
   }
+}
+
+/* Welcome message styling */
+.welcome-container {
+  margin-bottom: 20px;
+}
+
+.introduction {
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Conversation list styling */
+.conversations-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.conversation-items {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.conversation-item {
+  padding: 15px;
+  border-bottom: 1px solid var(--light-gray);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.conversation-item:hover {
+  background-color: #f5f7fa;
+}
+
+.conversation-title {
+  font-weight: 500;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.conversation-preview {
+  color: #666;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 5px;
+}
+
+.conversation-timestamp {
+  color: #999;
+  font-size: 12px;
+  text-align: right;
+}
+
+.new-conversation {
+  padding: 15px;
+  border-top: 1px solid var(--light-gray);
+}
+
+.new-chat-button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* Active conversation styling */
+.active-conversation {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.conversation-header {
+  display: flex;
+  align-items: center;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.conversation-header h3 {
+  margin: 0;
+  flex: 1;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-size: 16px;
+  padding: 5px 10px;
+  margin-right: 10px;
+}
+
+.message-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Navigation restricted state */
+.nav-item.restricted {
+  opacity: 0.7;
+}
+
+.nav-item.restricted .nav-tooltip {
+  background-color: #dc3545;
+}
+
+/* Login button */
+.login-button {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  border-radius: var(--border-radius);
+  font-size: 14px;
+  cursor: pointer;
+  margin-right: 10px;
 }
 
 

@@ -4,29 +4,59 @@ import "./App.css";
 import LaunchButton from "./components/LaunchButton/LaunchButton";
 import ModalWindow from "./components/ModalWindow/ModalWindow";
 
+/**
+ * Main Application Component
+ * 
+ * Controls the chat interface visibility and manages global application state.
+ * Serves as the entry point for the chat widget functionality.
+ */
 function App() {
-  // State management for the main application
-  const [isOpen, setIsOpen] = useState(false);  // Controls modal visibility
-  const [activeTab, setActiveTab] = useState("home");  // Tracks active tab in the modal
-  const [isLoggedIn, setIsLoggedIn] = useState(false);  // Authentication state
+  // ======== STATE MANAGEMENT ========
 
-  // Sample data for demonstration - Replace with API calls in production
+  // Control visibility of chat modal window
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Track which tab is currently active in the modal
+  const [activeTab, setActiveTab] = useState("home");
+
+  // Authentication state - For demo purposes set to true
+  // In production environment, this would be false by default
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  // ======== SAMPLE DATA ========
+  // Note: In production, this would be fetched from an API
+
+  // FAQ questions and answers for the Home section
   const faqData = [
     {
-      question: "How do I reset my password?",
-      answer: "Go to login page and click on 'Forgot Password' link.",
+      question: "What is Advith iTec?",
+      answer: `<div>
+        Advith ITeC is a tech-enabled consulting firm that integrates financial expertise with advanced technology to streamline financial operations. Established in 2020 and headquartered in Udupi, Karnataka, the company offers remote, process-driven solutions designed to enhance efficiency, compliance, and scalability for businesses worldwide.
+      </div>`
     },
     {
-      question: "How do I contact support?",
-      answer:
-        "You can reach us via email at support@example.com or use the chat feature.",
+      question: "What services do you offer?",
+      answer: <div>
+        <p>Advith ITeC provides a comprehensive suite of FinOps (Financial Operations) services, including:</p>
+        <ul>
+          <li>Bookkeeping and Accounting</li>
+          <li>Payroll Management</li>
+          <li>Tax Compliance and Regulatory Filings</li>
+          <li>Audit Support</li>
+          <li>Data Analytics and MIS Reporting</li>
+          <li>Corporate Law Compliance</li>
+          <li>Digital Process Automation</li>
+        </ul>
+        <p>These services are delivered through their Global Delivery Centre (GDC), Global Capability Centre (GCC), and Centre of Excellence (CoE), ensuring tailored solutions for diverse business needs.</p>
+      </div>
     },
     {
       question: "What are your business hours?",
-      answer: "We are available 24/7 for your support needs.",
-    },
+      answer: `<div>We are available 24/7 for your support needs.</div>`
+    }
   ];
 
+  // Sample conversation data for the Messages section
   const messageData = [
     {
       sender: "system",
@@ -48,6 +78,7 @@ function App() {
     },
   ];
 
+  // Help center articles organized by category
   const helpData = [
     {
       category: "Getting Started",
@@ -77,13 +108,18 @@ function App() {
     },
   ];
 
-  // Toggle modal window visibility - Called when chat button is clicked
+  /**
+   * Toggle chat window visibility
+   * Called when the floating launch button is clicked
+   */
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
 
+  // ======== COMPONENT RENDERING ========
   return (
     <div className="app-container">
+      {/* Render the chat modal window when isOpen is true */}
       {isOpen && (
         <ModalWindow
           toggleModal={toggleModal}
@@ -97,6 +133,7 @@ function App() {
         />
       )}
 
+      {/* Floating button that opens the chat interface */}
       <LaunchButton onClick={toggleModal} />
     </div>
   );

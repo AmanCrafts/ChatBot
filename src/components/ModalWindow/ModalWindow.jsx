@@ -5,7 +5,15 @@ import MessagesSection from "../Sections/MessagesSection";
 import HelpSection from "../Sections/HelpSection";
 import AuthenticationSection from "../Authentication/AuthenticationSection";
 
-// ModalWindow component is the main container for the chat interface
+/**
+ * ModalWindow Component
+ *
+ * The main container for the chat interface that handles:
+ * - Section visibility based on active tab
+ * - Authentication flow
+ * - Header with dynamic title
+ * - Navigation between sections
+ */
 const ModalWindow = ({
     toggleModal,
     activeTab,
@@ -16,19 +24,30 @@ const ModalWindow = ({
     isLoggedIn,
     setIsLoggedIn,
 }) => {
-    // Handle successful login
+    /**
+     * Handle successful login
+     * @param {Object} data - User credentials
+     */
     const handleLogin = (data) => {
         console.log("Login successful with:", data);
         setIsLoggedIn(true);
-        // In production: Call authentication API and store JWT token
+        // In production: Store token in secure storage and set up auth headers
     };
 
-    // Handle successful signup
+    /**
+     * Handle successful account creation
+     * @param {Object} data - New user information
+     */
     const handleSignup = (data) => {
         console.log("Signup successful with:", data);
         setIsLoggedIn(true);
-        // In production: Call registration API and store JWT token
+        // In production: Call API to create account and handle the response
     };
+
+    // Security: Redirect to home if trying to access restricted content
+    if (!isLoggedIn && activeTab === "messages") {
+        setActiveTab("home");
+    }
 
     return (
         <div className="modal-overlay">
@@ -36,36 +55,41 @@ const ModalWindow = ({
                 {/* Header with dynamic title based on current section */}
                 <div className="modal-header">
                     <h2 className="modal-title">
-                        {!isLoggedIn ? (
-                            "Authentication"
-                        ) : (
-                            <>
-                                {activeTab === "home" && "Home"}
-                                {activeTab === "messages" && "Messages"}
-                                {activeTab === "help" && "Help"}
-                            </>
-                        )}
+                        {activeTab === "home" && "Home"}
+                        {activeTab === "messages" && "Messages"}
+                        {activeTab === "help" && "Help"}
+                        {activeTab === "auth" && "Authentication"}
                     </h2>
+
                     <div className="header-actions">
-                        {/* Temporary logout button for testing - Replace with real logout in production */}
-                        {isLoggedIn && (
+                        {/* Conditional rendering of login/logout buttons */}
+                        {!isLoggedIn ? (
+                            <button
+                                className="login-button"
+                                onClick={() => setActiveTab("auth")}
+                            >
+                                Login
+                            </button>
+                        ) : (
                             <button
                                 className="logout-button"
                                 onClick={() => setIsLoggedIn(false)}
-                                title="Temporary logout for testing"
+                                title="Logout"
                             >
                                 Logout
                             </button>
                         )}
+
+                        {/* Close window button */}
                         <button className="close-button" onClick={toggleModal}>
                             <CloseIcon />
                         </button>
                     </div>
                 </div>
 
-                {/* Main content area - Shows auth forms or content based on login state */}
+                {/* Content area with conditional rendering based on active tab */}
                 <div className="modal-content">
-                    {!isLoggedIn ? (
+                    {activeTab === "auth" ? (
                         <AuthenticationSection
                             onLogin={handleLogin}
                             onSignup={handleSignup}
@@ -73,7 +97,7 @@ const ModalWindow = ({
                     ) : (
                         <>
                             {activeTab === "home" && <HomeSection faqData={faqData} />}
-                            {activeTab === "messages" && (
+                            {activeTab === "messages" && isLoggedIn && (
                                 <MessagesSection messages={messageData} />
                             )}
                             {activeTab === "help" && <HelpSection helpData={helpData} />}
@@ -81,12 +105,14 @@ const ModalWindow = ({
                     )}
                 </div>
 
-                {/* Navigation footer - Only visible when logged in */}
-                {isLoggedIn && (
-                    <div className="modal-footer">
-                        <Navigation activeTab={activeTab} setActiveTab={setActiveTab} />
-                    </div>
-                )}
+                {/* Bottom navigation */}
+                <div className="modal-footer">
+                    <Navigation
+                        activeTab={activeTab}
+                        setActiveTab={setActiveTab}
+                        isLoggedIn={isLoggedIn}
+                    />
+                </div>
             </div>
         </div>
     );

@@ -1,13 +1,25 @@
 import { useState } from "react";
 
+/**
+ * LoginForm Component
+ * 
+ * Handles user login with email and password.
+ * Provides form validation and submission handling.
+ * 
+ * @param {Function} onLogin - Callback for successful login
+ * @param {Function} toggleForm - Function to switch to signup form
+ */
 const LoginForm = ({ onLogin, toggleForm }) => {
-    // Login form data state
+    // Form data state
     const [formData, setFormData] = useState({
         email: "",
         password: "",
     });
 
-    // Handle form input changes
+    /**
+     * Update form data when inputs change
+     * @param {Event} e - Input change event
+     */
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({
@@ -16,10 +28,14 @@ const LoginForm = ({ onLogin, toggleForm }) => {
         }));
     };
 
-    // Handle form submission
+    /**
+     * Handle form submission
+     * @param {Event} e - Form submit event
+     */
     const handleSubmit = (e) => {
         e.preventDefault();
-        // In production, this would connect to a backend authentication service
+
+        // Note: In production, this would validate and send credentials to backend
         console.log("Login attempt with:", formData);
         onLogin(formData);
     };
@@ -30,7 +46,7 @@ const LoginForm = ({ onLogin, toggleForm }) => {
             <p className="auth-subtitle">Sign in to continue</p>
 
             <form onSubmit={handleSubmit}>
-                {/* Email field */}
+                {/* Email input */}
                 <div className="form-group">
                     <label htmlFor="email">Email</label>
                     <input
@@ -44,7 +60,7 @@ const LoginForm = ({ onLogin, toggleForm }) => {
                     />
                 </div>
 
-                {/* Password field */}
+                {/* Password input */}
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
                     <input
@@ -63,7 +79,7 @@ const LoginForm = ({ onLogin, toggleForm }) => {
                 </button>
             </form>
 
-            {/* Toggle to signup form */}
+            {/* Link to switch to signup form */}
             <p className="auth-toggle">
                 Don't have an account?
                 <button className="toggle-button" onClick={toggleForm}>
